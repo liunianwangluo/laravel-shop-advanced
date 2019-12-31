@@ -13,6 +13,7 @@ class ProductsController extends CommonProductsController
         return Product::TYPE_NORMAL;
     }
 
+    protected $title = '普通商品';
     protected function customGrid(Grid $grid)
     {
         $grid->model()->with(['category']);

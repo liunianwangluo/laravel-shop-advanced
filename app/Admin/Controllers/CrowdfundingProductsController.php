@@ -13,6 +13,7 @@ class CrowdfundingProductsController extends CommonProductsController
         return Product::TYPE_CROWDFUNDING;
     }
 
+    protected $title = '众筹商品';
     protected function customGrid(Grid $grid)
     {
         $grid->id('ID')->sortable();
