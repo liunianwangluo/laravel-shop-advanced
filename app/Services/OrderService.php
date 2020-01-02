@@ -196,6 +196,10 @@ class OrderService
     {
         // 将 $addressData 传入匿名函数
         $order = \DB::transaction(function () use ($user, $addressData, $sku) {
+            // 扣减对应 SKU 库存
+            if ($sku->decreaseStock(1) <= 0) {
+                throw new InvalidRequestException('该商品库存不足');
+            }
             // 将之前的更新收货地址的最后使用时间代码删除
             $order = new Order([
                 'address'      => [ // address 字段直接从 $addressData 数组中读取
